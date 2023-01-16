@@ -9,17 +9,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    // <Provider store={store}>
-    //   <Suspense>
-    //     <BrowserRouter>
-    //       <Routes>
-    //         <Route path='/' element={<HomePage />} />
-    //         <Route path='/launches' element={<LaunchesPage />} />
-    //       </Routes>
-    //     </BrowserRouter>
-    //   </Suspense>
-    // </Provider>
-
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<HomePage />} />

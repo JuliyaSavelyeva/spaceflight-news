@@ -5,7 +5,7 @@ import { MainContainer } from './styled';
 
 export const HomePage = () => {
   return (
-    <MainContainer container>
+    <MainContainer container flexDirection='column'>
       <Grid item><SearchField /></Grid>
       <Grid item><Articles /></Grid>
     </MainContainer>
