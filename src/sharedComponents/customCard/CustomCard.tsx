@@ -1,4 +1,3 @@
-import { Button, CardActions } from '@mui/material';
 import imgTest from '../../assets/img/testImg.png';
 import {
   CardActionStyled,
@@ -38,7 +37,7 @@ export const CustomCard = () => {
         </DescriptionStyled>
       </CardContentStyled>
       <CardActionStyled>
-        <CustomLink id={1} />
+        <CustomLink url={`/article/${1}`}>Read more</CustomLink>
       </CardActionStyled>
     </CardStyled>
   );
