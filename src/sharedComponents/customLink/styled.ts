@@ -15,7 +15,7 @@ export const BoxStyled = styled(Box)`
   text-decoration: none;
   display: flex;
   align-items: center;
-  max-width: 167px;
+  max-width: 184px;
   margin-left: ${props => (props.flexDirection === 'row-reverse' ? '20px' : 0)};
 
   @media (min-width: ${bp.md}) {

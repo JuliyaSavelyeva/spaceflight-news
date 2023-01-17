@@ -47,3 +47,7 @@ export const LinkWrapperStyled = styled(Box)`
   margin: 0 auto;
   width: 89.6%;
 `;
+
+export const LoaderWrapperStyled = styled(Box)`
+  height: 100vh;
+`;

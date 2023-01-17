@@ -1,4 +1,3 @@
-import imgTest from '../../assets/img/testImg.png';
 import {
   CardActionStyled,
   CardContentStyled,
@@ -11,33 +10,41 @@ import {
 import { ReactComponent as CalendarIcon } from '../../assets/img/calendarIcon.svg';
 import { CustomTitle } from '../customTitle/CustomTitle';
 import { CustomLink } from '../customLink/CustomLink';
+import { ArticleTypes } from '../../models/articles';
+import { useMemo } from 'react';
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
 
-// type HeadingTypes = {
-//   children: ReactNode
-// }
+dayjs.extend(advancedFormat);
 
-const description = ' Non sed molestie tortor massa vitae in mattis. Eget vel consequat hendrerit commodo libero aliquam. Urna arcu';
-console.log(description.length);
-const test = description.length <= 100 ? description : `${description.slice(0, 100)}...`;
-console.log(test);
-console.log(test.length);
+type CustomCardTypes = {
+  article: ArticleTypes;
+}
 
-export const CustomCard = () => {
+
+export const CustomCard = ({ article }: CustomCardTypes) => {
+  const description: string = useMemo(() => {
+    if (article) {
+      return article.summary.length <= 100 ? article.summary : `${article.summary.slice(0, 100)}...`;
+    }
+    return '';
+  }, [article]);
+
   return (
     <CardStyled>
-      <CardMediaStyled image={imgTest} title='green iguana' />
+      <CardMediaStyled image={article.imageUrl} title={article.title} />
       <CardContentStyled>
         <DateInfoWrapperStyled>
           <CalendarIcon />
-          <DateInfoStyled>June 29th, 2021</DateInfoStyled>
+          <DateInfoStyled>{dayjs(article.publishedAt).format('MMM Do, YYYY')}</DateInfoStyled>
         </DateInfoWrapperStyled>
-        <CustomTitle>The 2020 World's Most Valuable Brands</CustomTitle>
+        <CustomTitle>{article.title}</CustomTitle>
         <DescriptionStyled>
-          {test}
+          {description}
         </DescriptionStyled>
       </CardContentStyled>
       <CardActionStyled>
-        <CustomLink url={`/article/${1}`}>Read more</CustomLink>
+        <CustomLink url={`/article/${article.id}`}>Read more</CustomLink>
       </CardActionStyled>
     </CardStyled>
   );

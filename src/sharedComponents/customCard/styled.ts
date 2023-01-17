@@ -46,4 +46,6 @@ export const DescriptionStyled = styled.p`
   font-size: 16px;
   color: ${color.mainText};
   line-height: 150%;
+  height: 96px;
+  overflow: hidden;
 `;

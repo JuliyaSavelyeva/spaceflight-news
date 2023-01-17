@@ -1,13 +1,22 @@
-import { Grid } from '@mui/material';
 import { Articles } from '../../components/articles/Articles';
 import { SearchField } from '../../components/searchField/SearchField';
 import { MainContainer } from './styled';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getAllArticles, selectArticles } from '../../features/articles/counterSlice';
 
 export const HomePage = () => {
+  const { articlesData } = useAppSelector(selectArticles);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getAllArticles());
+  }, [dispatch]);
+
   return (
-    <MainContainer container flexDirection='column'>
-      <Grid item><SearchField /></Grid>
-      <Grid item><Articles /></Grid>
+    <MainContainer>
+      <SearchField />
+      <Articles articlesData={articlesData} />
     </MainContainer>
   );
 };

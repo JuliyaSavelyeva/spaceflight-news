@@ -1,25 +1,71 @@
-import imgTest from '../../assets/img/testImg.png';
 import { CustomLink } from '../../sharedComponents/customLink/CustomLink';
-import { WrapperBox, MediaStyled, CardStyled, CardContentStyled, DescriptionStyled, LinkWrapperStyled } from './styled';
+import {
+  WrapperBox,
+  MediaStyled,
+  CardStyled,
+  CardContentStyled,
+  DescriptionStyled,
+  LinkWrapperStyled,
+  LoaderWrapperStyled
+} from './styled';
 import { CustomTitle } from '../../sharedComponents/customTitle/CustomTitle';
 import { description } from '../../assets/data';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  getSingleArticle,
+  selectArticles
+} from '../../features/articles/counterSlice';
+import { useEffect } from 'react';
+import { CustomLoader } from '../../sharedComponents/customLoader/CustomLoader';
+import { CustomError } from '../../sharedComponents/customError/CustomError';
 
+const link = (
+  <LinkWrapperStyled>
+    <CustomLink isBack url={'/'}>
+      Back to homepage
+    </CustomLink>
+  </LinkWrapperStyled>
+);
 
 export const ArticlePage = () => {
+  const { id } = useParams();
+  const { status, article } = useAppSelector(selectArticles);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getSingleArticle(id));
+    }
+  }, [dispatch, id]);
+
   return (
     <WrapperBox>
-      <MediaStyled image={imgTest} />
-      <CardStyled>
-        <CardContentStyled>
-          <CustomTitle textAlign={{ textAlign: 'center' }}>The 2020 World's Most Valuable Brands</CustomTitle>
-          <DescriptionStyled>
-            {description}
-          </DescriptionStyled>
-        </CardContentStyled>
-      </CardStyled>
-      <LinkWrapperStyled>
-        <CustomLink isBack url={'/'}>Back to homepage</CustomLink>
-      </LinkWrapperStyled>
+      {status === 'loading' && (
+        <LoaderWrapperStyled>
+          <CustomLoader />
+        </LoaderWrapperStyled>
+      )}
+      {status === 'failed' && (
+        <LoaderWrapperStyled>
+          <CustomError />
+          {link}
+        </LoaderWrapperStyled>
+      )}
+      {article && status === 'success' && (
+        <>
+          <MediaStyled image={article.imageUrl} />
+          <CardStyled>
+            <CardContentStyled>
+              <CustomTitle textAlign={{ textAlign: 'center' }}>
+                {article.title}
+              </CustomTitle>
+              <DescriptionStyled>{description}</DescriptionStyled>
+            </CardContentStyled>
+          </CardStyled>
+          {link}
+        </>
+      )}
     </WrapperBox>
   );
 };
