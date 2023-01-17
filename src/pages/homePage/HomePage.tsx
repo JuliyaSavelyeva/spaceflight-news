@@ -3,7 +3,10 @@ import { SearchField } from '../../components/searchField/SearchField';
 import { MainContainer } from './styled';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getAllArticles, selectArticles } from '../../features/articles/counterSlice';
+import {
+  getAllArticles,
+  selectArticles
+} from '../../features/articles/counterSlice';
 
 export const HomePage = () => {
   const { articlesData } = useAppSelector(selectArticles);
