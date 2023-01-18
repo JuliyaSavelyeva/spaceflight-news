@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 
-export const description = <Box>
+export const description = <>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum ornare convallis non etiam tincidunt tincidunt.
     Non dolor vel purus id. Blandit habitasse volutpat id dolor pretium, sem iaculis. Faucibus commodo mauris enim,
@@ -51,4 +51,4 @@ export const description = <Box>
     Porttitor facilisi viverra mi lacus lacinia accumsan. Pellentesque gravida ligula bibendum aliquet nulla massa elit.
     Ac faucibus donec sit morbi pharetra urna. Vel facilisis amet placerat ultrices lobortis proin nulla.
   </p>
-</Box>;
+</>;

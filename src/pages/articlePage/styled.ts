@@ -35,7 +35,7 @@ export const CardContentStyled = styled(CardContent)`
   }
 `;
 
-export const DescriptionStyled = styled.p`
+export const DescriptionStyled = styled(Box)`
   margin: 0;
   font-weight: 400;
   font-size: 18px;
