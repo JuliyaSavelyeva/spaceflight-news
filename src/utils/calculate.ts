@@ -4,7 +4,7 @@ export const calculateLengthDescription = (value: string) => {
   const textWithoutHTML = value
     .slice(0, 100)
     .replace(new RegExp(re, 'g'), '')
-    .replace(new RegExp(/\<.*/, 'g'), '');
+    .replace(new RegExp(/<.*/, 'g'), '');
 
   counterCharacters =
     counterCharacters + (counterCharacters - textWithoutHTML.length);

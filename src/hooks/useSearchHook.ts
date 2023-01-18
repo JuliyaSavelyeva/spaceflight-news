@@ -3,7 +3,9 @@ import { ArticleTypes } from '../models/articles';
 import { reduceDescription, reduceTitle } from '../utils/calculate';
 
 export const useSearch = (articlesData: ArticleTypes[] | null) => {
-  const [updateArticleData, setUpdateArticleData] = useState<ArticleTypes[] | null>(null);
+  const [updateArticleData, setUpdateArticleData] = useState<
+    ArticleTypes[] | null
+  >(null);
   const [value, setValue] = useState<string>('');
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +26,21 @@ export const useSearch = (articlesData: ArticleTypes[] | null) => {
         return isSearchedArticles.length;
       });
 
-      const highlightedArticles = searchedArticles.map((article) => {
+      const sortedSearchedArticles = searchedArticles.slice().sort((a) => {
+        const title = reduceTitle(a.title);
+        let value = 0;
+
+        filteredWords.forEach((word) => {
+          if (title.toLowerCase().includes(word.toLowerCase())) {
+            value = -1;
+          } else {
+            value = 1;
+          }
+        });
+        return value;
+      });
+
+      const highlightedArticles = sortedSearchedArticles.map((article) => {
         const title = reduceTitle(article.title);
         const description = reduceDescription(article.summary);
         let newTitle = title;

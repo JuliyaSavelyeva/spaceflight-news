@@ -1,5 +1,3 @@
-import { Box } from '@mui/material';
-
 export const description = <>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum ornare convallis non etiam tincidunt tincidunt.
