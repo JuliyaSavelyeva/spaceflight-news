@@ -57,9 +57,10 @@ export const ArticlePage = () => {
           <MediaStyled image={article.imageUrl} />
           <CardStyled>
             <CardContentStyled>
-              <CustomTitle textAlign={{ textAlign: 'center' }}>
-                {article.title}
-              </CustomTitle>
+              <CustomTitle
+                title={article.title}
+                textAlign={{ textAlign: 'center' }}
+              />
               <DescriptionStyled>{description}</DescriptionStyled>
             </CardContentStyled>
           </CardStyled>

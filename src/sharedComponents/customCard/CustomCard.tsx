@@ -14,18 +14,22 @@ import { ArticleTypes } from '../../models/articles';
 import { useMemo } from 'react';
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
+import { calculateLengthDescription } from '../../utils/calculate';
 
 dayjs.extend(advancedFormat);
 
 type CustomCardTypes = {
   article: ArticleTypes;
-}
-
+};
 
 export const CustomCard = ({ article }: CustomCardTypes) => {
   const description: string = useMemo(() => {
     if (article) {
-      return article.summary.length <= 100 ? article.summary : `${article.summary.slice(0, 100)}...`;
+      const counterCharacters = calculateLengthDescription(article.summary);
+
+      return article.summary.length <= 100
+        ? article.summary
+        : `${article.summary.slice(0, counterCharacters)}...`;
     }
     return '';
   }, [article]);
@@ -36,12 +40,12 @@ export const CustomCard = ({ article }: CustomCardTypes) => {
       <CardContentStyled>
         <DateInfoWrapperStyled>
           <CalendarIcon />
-          <DateInfoStyled>{dayjs(article.publishedAt).format('MMM Do, YYYY')}</DateInfoStyled>
+          <DateInfoStyled>
+            {dayjs(article.publishedAt).format('MMM Do, YYYY')}
+          </DateInfoStyled>
         </DateInfoWrapperStyled>
-        <CustomTitle>{article.title}</CustomTitle>
-        <DescriptionStyled>
-          {description}
-        </DescriptionStyled>
+        <CustomTitle title={article.title} />
+        <DescriptionStyled dangerouslySetInnerHTML={{ __html: description }} />
       </CardContentStyled>
       <CardActionStyled>
         <CustomLink url={`/article/${article.id}`}>Read more</CustomLink>

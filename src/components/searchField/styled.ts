@@ -34,7 +34,9 @@ export const StyledInputBase = styled(InputBase)`
     font-style: normal;
     font-weight: 400;
     padding-left: 60px;
+    padding-right: 10px;
     height: 100%;
+    width: 100%;
     color: ${color.primaryText};
     font-size: 16px;
   }

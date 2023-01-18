@@ -1,13 +1,13 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties } from 'react';
 import { Title } from './styled';
 
 type TitleTypes = {
-  children: ReactNode
   textAlign?: CSSProperties;
-}
+  title: string;
+};
 
-export const CustomTitle = ({ children, textAlign }: TitleTypes) => {
+export const CustomTitle = ({ textAlign, title }: TitleTypes) => {
   return (
-    <Title style={textAlign}>{children}</Title>
+    <Title dangerouslySetInnerHTML={{ __html: title }} style={textAlign} />
   );
 };
