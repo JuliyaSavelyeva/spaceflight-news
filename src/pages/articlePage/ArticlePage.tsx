@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   getSingleArticle,
   selectArticles
-} from '../../features/articles/counterSlice';
+} from '../../features/articles/articleSlice';
 import { useEffect } from 'react';
 import { CustomLoader } from '../../sharedComponents/customLoader/CustomLoader';
 import { CustomError } from '../../sharedComponents/customError/CustomError';

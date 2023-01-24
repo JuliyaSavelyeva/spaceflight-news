@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { getArticle, getArticles } from './counterAPI';
+import { getArticle, getArticles } from './articleAPI';
 import { ArticleTypes } from '../../models/articles';
 
 export interface ArticlesState {

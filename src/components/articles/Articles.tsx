@@ -5,7 +5,7 @@ import { CustomCard } from '../../sharedComponents/customCard/CustomCard';
 import { ArticleTypes } from '../../models/articles';
 import { CustomLoader } from '../../sharedComponents/customLoader/CustomLoader';
 import { useAppSelector } from '../../app/hooks';
-import { selectArticles } from '../../features/articles/counterSlice';
+import { selectArticles } from '../../features/articles/articleSlice';
 import { CustomError } from '../../sharedComponents/customError/CustomError';
 
 type ArticlesTypes = {

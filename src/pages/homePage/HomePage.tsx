@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   getAllArticles,
   selectArticles
-} from '../../features/articles/counterSlice';
+} from '../../features/articles/articleSlice';
 import { useSearch } from '../../hooks/useSearchHook';
 
 export const HomePage = () => {
